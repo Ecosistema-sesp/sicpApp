@@ -1,118 +1,60 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+import React from "react";
+import { StatusBar } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import IniciarSesion from './src/screens/Inicio';
+import { Panel } from "./src/screens/Panel";
+import PanelNovedades from "./src/components/panelnovedades/PanelNovedades";
+import DesplazamientoStackScreen from "./src/components/novedades/desplazamiento/Desplazamiento";
+import ResumenDesplazamientoStackScreen from "./src/components/novedades/desplazamiento/ResumenDesplazamiento";
+import PasajeroStackScreen from "./src/components/novedades/pasajero/Pasajero";
+import VehiculoStackScreen from "./src/components/novedades/vehiculo/Vehiculo";
+import InicioMisionStackScreen from "./src/components/novedades/iniciocomision/InicioComision";
+import ResumenPasajeroStackScreen from "./src/components/novedades/pasajero/ResumenPasajero";
+import ResumenVehiculoStackScreen from "./src/components/novedades/vehiculo/ResumenVehiculo";
+import ResumenComisionStackScreen from "./src/components/novedades/iniciocomision/ResumenComision";
+import InicioServicioStackScreen from "./src/components/novedades/servicio/Servicio";
+import ResumenServicioStackScreen from "./src/components/novedades/servicio/ResumenServicio";
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import VialStackScreen from "./src/components/novedades/vial/Vial";
+import ResumenVialStackScreen from "./src/components/novedades/vial/ResumenVial";
+import PanelNovedades2StackScreen from "./src/components/panelnovedades/PanelNovedades2";
+import SaludStackScreen from "./src/components/novedades/salud/Salud";
+import ResumenSaludStackScreen from "./src/components/novedades/salud/ResumenSalud";
+import DotacionStackScreen from "./src/components/novedades/dotación/Dotacion";
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
+const Stack = createNativeStackNavigator();
 
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
+function App() {
+  return (  
+
+    <NavigationContainer>
+        <StatusBar backgroundColor="#FFF" barStyle="dark-content" />
+          <Stack.Navigator initialRouteName="IniciarSesion">
+            <Stack.Screen name="IniciarSesion" component={IniciarSesion} options={{ headerShown: false }} />
+            <Stack.Screen name="Panel" component={Panel} options={{ headerShown: false }} />
+            <Stack.Screen name="PanelNovedades" component={PanelNovedades} options={{ headerShown: false }} />
+            <Stack.Screen name="PanelNovedades2" component={PanelNovedades2StackScreen} options={{ headerShown: false }} />
+            <Stack.Screen name="ResumenDesplazamiento"  component={ResumenDesplazamientoStackScreen} options={{ headerShown: false }} />
+            <Stack.Screen name="NovedadDesplazamiento"  component={DesplazamientoStackScreen} options={{ headerShown: false }} />
+            <Stack.Screen name="ResumenPasajero"  component={ResumenPasajeroStackScreen} options={{ headerShown: false }} />
+            <Stack.Screen name="novedadPasajero"  component={PasajeroStackScreen} options={{ headerShown: false }} />
+            <Stack.Screen name="ResumenVehiculo"  component={ResumenVehiculoStackScreen} options={{ headerShown: false }} />
+            <Stack.Screen name="novedadVehiculo"  component={VehiculoStackScreen} options={{ headerShown: false }} />
+            <Stack.Screen name="ResumenComision"  component={ResumenComisionStackScreen} options={{ headerShown: false }} />
+            <Stack.Screen name="novedadInicioMision"  component={InicioMisionStackScreen} options={{ headerShown: false }} />
+            <Stack.Screen name="novedadServicio"  component={InicioServicioStackScreen} options={{ headerShown: false }} />
+            <Stack.Screen name="ResumenServicio"  component={ResumenServicioStackScreen} options={{ headerShown: false }} />
+            <Stack.Screen name="novedadVial" component={VialStackScreen} options={{headerShown:false}} />
+            <Stack.Screen name="ResumenVial" component={ResumenVialStackScreen} options={{headerShown:false}} />
+            <Stack.Screen name="novedadSalud" component={SaludStackScreen} options={{headerShown:false}} />
+            <Stack.Screen name="ResumenSalud" component={ResumenSaludStackScreen} options={{headerShown:false}} />
+            <Stack.Screen name="NovedadDotacion" component={DotacionStackScreen} options={{headerShown:false}} />
+
+          </Stack.Navigator>
+        </NavigationContainer>
   );
 }
-
-function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
-}
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
 
 export default App;
