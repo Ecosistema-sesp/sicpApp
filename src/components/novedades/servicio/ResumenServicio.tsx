@@ -38,6 +38,8 @@ const ResumenServicioForm = () => {
             fecha_inicio: '',
             fecha_fin: '',
             ubicacion_inicio: '',
+            departamentoinicio: '',
+            municipioinicio:'',
             ubicacion_fin: '',
             observacion: '',
           },
@@ -141,6 +143,14 @@ const ResumenServicioForm = () => {
             <Text style={styles.text}>{ubicacion_fin || 'No disponible'}</Text>
           </>
           <>
+            <Text style={styles.label}>Departamento:</Text>
+            <Text style={styles.text}>{ServicioForm.values.departamentoinicio || 'No disponible'}</Text>
+          </>
+          <>
+            <Text style={styles.label}>Municipio:</Text>
+            <Text style={{...styles.text, marginBottom: 30}}>{ServicioForm.values.municipioinicio || 'No disponible'}</Text>
+          </>
+          <>
             <Text style={styles.label}>observación:</Text>
             <Text style={{...styles.text, marginBottom: 30}}>{ServicioForm.values.observacion}</Text>
         </>
@@ -198,7 +208,7 @@ export default function ResumenServicioStackScreen() {
         },
         headerTitle: () => (
           <View style={{ width: 250}}>
-              <Text>Registro de pasajero</Text>
+              <Text>Resumen de reporte de Servicio</Text>
           </View>
         ),
       }}

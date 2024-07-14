@@ -5,11 +5,15 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Iconc from 'react-native-vector-icons/MaterialIcons';
+import Icond from 'react-native-vector-icons/FontAwesome6';
 
 import { Container } from "../inicio/Contenedor";
 import { useServicio } from './servicio/RutaServicio';
 import { desplazamientoUbicacionFin, useDesplazamiento } from './desplazamiento/rutadesplazamiento';
 import { useSalud } from './salud/RutaSalud';
+import { useDotacion } from './dotación/RutaDotación';
+import { useDisponibilidad } from './disponibilidad/RutaDisponibilidad';
+import { useFinalizacion } from './finalizacionAnticipada/RutaFinalizacionAnticipada';
 
 export type RootStackParamList = {
   IniciarSesion: undefined;
@@ -26,6 +30,9 @@ const NReporteIndividualForm = () => {
   const servicioData = useServicio();
   const desplazamiento = useDesplazamiento();
   const salud = useSalud();
+  const dotacion = useDotacion();
+  const disponibilidad = useDisponibilidad();
+  const finalizacion = useFinalizacion();
   const UbicacionFin = desplazamientoUbicacionFin();
 
   interface Item {
@@ -57,7 +64,9 @@ useFocusEffect(
         const apiData = await response.json();
         
         const filteredData = apiData
-        .filter((item: Item) => item.usuario_sicp === userId && (item.tipo_reporte === 2 || item.tipo_reporte === 3 || item.tipo_reporte === 9 ))
+        .filter((item: Item) => item.usuario_sicp === userId && (item.tipo_reporte === 2 || item.tipo_reporte === 3 || item.tipo_reporte === 9 || item.tipo_reporte === 11
+          || item.tipo_reporte === 10 || item.tipo_reporte === 12
+        ))
         .sort((a: Item, b: Item) => Number(b.id_reporte) - Number(a.id_reporte));
         setData(filteredData);
     
@@ -80,8 +89,14 @@ const renderIcon = (tipo_reporte:number,id:number ) => {
         : <Icon name="compass-outline" size={60} color="#5A87C6" style={styles.icono} />;
     case 9:
       return <Iconc name="health-and-safety" size={60} color="#5A87C6" style={styles.icono} />;
+    case 10:
+      return <Icon name="hand-right" size={55} color="#5A87C6" style={styles.icono} />;
+    case 11:
+      return <Icond name="gun" size={50} color="#5A87C6" style={styles.icono} />;
+    case 12:
+      return <Icon name="calendar-sharp" size={55} color="#5A87C6" style={styles.icono} />;
     default:
-      return <Icon name="help-circle-outline" size={60} color="#5A87C6" style={styles.icono} />;
+      return <Icon name="help-circle-outline" size={50} color="#5A87C6" style={styles.icono} />;
   }
 }
 
@@ -102,6 +117,15 @@ const renderIcon = (tipo_reporte:number,id:number ) => {
                 break;
               case 9:
                 salud(item.id_reporte);
+                break;
+              case 10:
+                disponibilidad(item.id_reporte);
+                break;
+              case 11:
+                dotacion(item.id_reporte);
+                break;
+              case 12:
+                finalizacion(item.id_reporte);
                 break;
               default:
                 console.log('Tipo de reporte no manejado');

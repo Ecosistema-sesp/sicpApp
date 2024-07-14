@@ -34,6 +34,8 @@ const ResumenSaludForm = () => {
             fecha_actualizacion: '',
             fecha_inicio: '',
             ubicacion_inicio: '',
+            departamentoinicio: '',
+            municipioinicio:'',
             observacion: '',
           },
     onSubmit: () => {},
@@ -110,6 +112,14 @@ const ResumenSaludForm = () => {
           <>
             <Text style={styles.label}>Ubicacion:</Text>
             <Text style={styles.text}>{ubicacion_inicio || 'No disponible'}</Text>
+          </>
+          <>
+            <Text style={styles.label}>Departamento:</Text>
+            <Text style={styles.text}>{SaludForm.values.departamentoinicio || 'No disponible'}</Text>
+          </>
+          <>
+            <Text style={styles.label}>Municipio:</Text>
+            <Text style={{...styles.text, marginBottom: 30}}>{SaludForm.values.municipioinicio || 'No disponible'}</Text>
           </>
         <TituloContainer
           iconName="chevron-forward-circle"

@@ -23,6 +23,11 @@ import PanelNovedades2StackScreen from "./src/components/panelnovedades/PanelNov
 import SaludStackScreen from "./src/components/novedades/salud/Salud";
 import ResumenSaludStackScreen from "./src/components/novedades/salud/ResumenSalud";
 import DotacionStackScreen from "./src/components/novedades/dotación/Dotacion";
+import ResumenDotacionStackScreen from "./src/components/novedades/dotación/ResumenDotacion";
+import DisponibilidadStackScreen from "./src/components/novedades/disponibilidad/Disponibilidad";
+import ResumenDisponibilidadStackScreen from "./src/components/novedades/disponibilidad/ResumenDisponibilidad";
+import FinalizacionStackScreen from "./src/components/novedades/finalizacionAnticipada/FinalizacionAnticipada";
+import ResumenFinalizacionStackScreen from "./src/components/novedades/finalizacionAnticipada/ResumenFinalizacionAnticipada";
 
 const Stack = createNativeStackNavigator();
 
@@ -51,6 +56,11 @@ function App() {
             <Stack.Screen name="novedadSalud" component={SaludStackScreen} options={{headerShown:false}} />
             <Stack.Screen name="ResumenSalud" component={ResumenSaludStackScreen} options={{headerShown:false}} />
             <Stack.Screen name="NovedadDotacion" component={DotacionStackScreen} options={{headerShown:false}} />
+            <Stack.Screen name="ResumenDotacion" component={ResumenDotacionStackScreen} options={{headerShown:false}} />
+            <Stack.Screen name="novedadDisponibilidad" component={DisponibilidadStackScreen} options={{headerShown:false}} />
+            <Stack.Screen name="ResumenDisponibilidad" component={ResumenDisponibilidadStackScreen} options={{headerShown:false}} />
+            <Stack.Screen name="novedadFinalizacion" component={FinalizacionStackScreen} options={{headerShown:false}} />
+            <Stack.Screen name="ResumenFinalizacion" component={ResumenFinalizacionStackScreen} options={{headerShown:false}} />
 
           </Stack.Navigator>
         </NavigationContainer>

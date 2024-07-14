@@ -5,7 +5,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { useNavigation, RouteProp, useRoute, NavigationProp } from "@react-navigation/native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
-import { StackNavigatorParams as localStackNavigatorParams} from '../../panelnovedades/BotonDotacion';
+import { StackNavigatorParams as localStackNavigatorParams} from '../../panelnovedades/BotonDisponibilidad';
 import { Container } from '../../inicio/Contenedor';
 import NombreApellido from '../ObtenerUsuario';
 import { BotonSubmit } from '../../../navegacion/BotonSubmit';
@@ -17,14 +17,13 @@ import { obtenerIdUsuario } from '../../../../BaseDatos/DatosBasicos';
 import { enviarDatosTablaTemporalServicio, insertarDatosServicio } from '../../../../BaseDatos/Servicio';
 import AreaInput from '../textinput';
 import DepartamentoMunicipio from '../DepartamentoMunicipio';
-import NovedadCategoriaDotacion from './TipoDotación';
 
 
 type RootStackParamList = {
   Panel: undefined;
 };
 
-type DhDotacionForm = {
+type DhDisponibilidadForm = {
   desdePanelNovedades: boolean;
   id: any;
 };
@@ -38,15 +37,15 @@ const getUsername = async () => {
   }
 };
 
-const DhDotacionForm = () => {
-  const route = useRoute<RouteProp<localStackNavigatorParams, 'NovedadDotacion'>>();
+const DhDisponibilidadForm = () => {
+  const route = useRoute<RouteProp<localStackNavigatorParams, 'novedadDisponibilidad'>>();
   const [fechaInicio, setFechaInicio] = useState('');
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const [userId, setUserId] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);
   const { desdePanelNovedades, id } = route.params;
   
-  const Dotacion = useFormik({
+  const Disponibilidad = useFormik({
     initialValues:{
       usuario_sicp: userId,
       fecha_creacion: new Date(),
@@ -54,15 +53,14 @@ const DhDotacionForm = () => {
       fecha_inicio: '',
       ubicacion_inicio: '',
       observacion: '',
-      tipo_reporte: 11,
+      tipo_reporte: 10,
       departamento_inicio: '',
       municipio_inicio: '',
-      tipo_dotacion: '',
     },
     
     onSubmit: async (values: FormikValues) => {
       try {
-        await axios.post('http://ecosistemasesp.unp.gov.co/sicp/api/dotacion/', values);
+        await axios.post('http://ecosistemasesp.unp.gov.co/sicp/api/disponibilidad/', values);
         //insertarDatosServicio(values);
         navigation.navigate('Panel');
       } catch (error) {
@@ -98,7 +96,7 @@ const DhDotacionForm = () => {
   
   useEffect(() => {
     if (userId !== null) {
-      Dotacion.setFieldValue('usuario_sicp', userId);
+      Disponibilidad.setFieldValue('usuario_sicp', userId);
     }
   }, [userId]);
 
@@ -118,22 +116,21 @@ const DhDotacionForm = () => {
           titulo="Persona que registra"
         />
         
-        <NombreApellido setUserId={setUserId} desplazamiento={Dotacion} />
+        <NombreApellido setUserId={setUserId} desplazamiento={Disponibilidad} />
 
         <TituloContainer
           iconName="chevron-forward-circle"
           titulo="Datos y ubicación de inicio"
         />
-        <FechaHora variables={{fecha : fechaInicio}} desplazamiento={Dotacion} tipo='fecha_inicio'/>
-        <DepartamentoMunicipio desplazamiento={Dotacion} tipo='inicio' />
-        <Ubicacion desplazamiento={Dotacion} tipo='inicio' />
-        <NovedadCategoriaDotacion Dotacion={Dotacion} />
+        <FechaHora variables={{fecha : fechaInicio}} desplazamiento={Disponibilidad} tipo='fecha_inicio'/>
+        <DepartamentoMunicipio desplazamiento={Disponibilidad} tipo='inicio' />
+        <Ubicacion desplazamiento={Disponibilidad} tipo='inicio' />
         <TituloContainer
           iconName="checkmark-done-circle"
           titulo="Observaciones"
           />
-        <AreaInput placeholder='' onChangeText={(text) => Dotacion.setFieldValue('observacion', text)}/>
-        <BotonSubmit handleSubmit={() => Dotacion.handleSubmit()} buttonText="Guardar reporte" />
+        <AreaInput placeholder='' onChangeText={(text) => Disponibilidad.setFieldValue('observacion', text)}/>
+        <BotonSubmit handleSubmit={() => Disponibilidad.handleSubmit()} buttonText="Guardar reporte" />
 
       </>
     )}
@@ -141,16 +138,16 @@ const DhDotacionForm = () => {
   )
 }
 
-const DotacionStack = createStackNavigator();
-export default function DotacionStackScreen() {
-  const route = useRoute<RouteProp<localStackNavigatorParams, 'NovedadDotacion'>>();
+const DisponibilidadStack = createStackNavigator();
+export default function DisponibilidadStackScreen() {
+  const route = useRoute<RouteProp<localStackNavigatorParams, 'novedadDisponibilidad'>>();
   const desdePanelNovedades = route.params?.desdePanelNovedades;
   const id = route.params?.id;
   return (
-  <DotacionStack.Navigator>
-    <DotacionStack.Screen 
-      name="DhDotacionForm" 
-      component={DhDotacionForm} 
+  <DisponibilidadStack.Navigator>
+    <DisponibilidadStack.Screen 
+      name="DhDisponibilidadForm" 
+      component={DhDisponibilidadForm} 
       initialParams={{ desdePanelNovedades: desdePanelNovedades, id: id }}
       options={{ 
         headerStyle: {
@@ -160,12 +157,12 @@ export default function DotacionStackScreen() {
         },
         headerTitle: () => (
           <View style={{ width: 250}}>
-              <Text>Registro de reporte de dotación</Text>
+              <Text>Registro de reporte de disponibilidad</Text>
           </View>
         ),
       }}
     />
-  </DotacionStack.Navigator>
+  </DisponibilidadStack.Navigator>
   );
 }
 

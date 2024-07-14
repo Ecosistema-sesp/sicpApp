@@ -12,6 +12,8 @@ import { BotonSubmit } from "../../navegacion/BotonSubmit";
 import BotonVial from "./BotonVial";
 import BotonSalud from "./BotonSalud";
 import BotonDotacion from "./BotonDotacion";
+import BotonDisponibilidad from "./BotonDisponibilidad";
+import BotonFinalizacion from "./BotonFinalizacionAnticipada";
 
 
 const PanelNovedadesStack = createStackNavigator();
@@ -29,7 +31,8 @@ const PanelNovedades = () => {
                 <BotonDotacion />
             </View>
             <View style={styles.row}>
-                
+                <BotonDisponibilidad />
+                <BotonFinalizacion />
             </View>
             <BotonFlotante />
         </View>
