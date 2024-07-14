@@ -92,59 +92,74 @@ const DepartamentoMunicipio = ({ desplazamiento, tipo }: DepartamentoMunicipioPr
   
 
   return (
+
     <View style={styles.departamentomunicipio}>
+
       <Text style={styles.texto}>
         Departamento:
       </Text>
-      <Picker
-        style={{...styles.picker, borderWidth: 1, borderColor: 'black', }}
-        selectedValue={desplazamiento.values[`departamento_${tipo}`]}
-        onValueChange={(itemValue) => {
-          desplazamiento.setFieldValue(`departamento_${tipo}`, itemValue);
-          setSelectedDepartamento(itemValue);  // Añade esta línea
-          fetchMunicipios(itemValue);
-        }}
-      >
-      {departamentos.map((departamento) => (
-        <Picker.Item key={departamento.id_departamento} label={departamento.nombre_departamento.toString()} value={departamento.id_departamento} />
-      ))}
-      </Picker>
+
+      <View style={styles.viewPicker}>
+        <Picker
+          style={{...styles.picker}}
+          itemStyle={styles.pickerItem}
+          selectedValue={desplazamiento.values[`departamento_${tipo}`]}
+          onValueChange={(itemValue) => {
+            desplazamiento.setFieldValue(`departamento_${tipo}`, itemValue);
+            setSelectedDepartamento(itemValue);  // Añade esta línea
+            fetchMunicipios(itemValue);
+          }}
+        >
+        {departamentos.map((departamento) => (
+          <Picker.Item key={departamento.id_departamento} label={departamento.nombre_departamento.toString()} value={departamento.id_departamento} />
+        ))}
+        </Picker>
+      </View>
+
       <Text style={styles.texto}>
         Municipio:
       </Text>
-      <Picker
-        style={styles.picker}
-        selectedValue={desplazamiento && desplazamiento.values ? (desplazamiento.values[`municipio_${tipo}`] || desplazamiento.values[`munipio_${tipo}`]) : ''}
-        onValueChange={(itemValue) => {
-          if (desplazamiento && desplazamiento.setFieldValue) {
-            if (desplazamiento.values[`municipio_${tipo}`] !== undefined) {
-              desplazamiento.setFieldValue(`municipio_${tipo}`, itemValue);
-            } else if (desplazamiento.values[`munipio_${tipo}`] !== undefined) {
-              desplazamiento.setFieldValue(`munipio_${tipo}`, itemValue);
+
+      <View style={styles.viewPicker}>
+        <Picker
+          style={styles.picker}
+          selectedValue={desplazamiento && desplazamiento.values ? (desplazamiento.values[`municipio_${tipo}`] || desplazamiento.values[`munipio_${tipo}`]) : ''}
+          onValueChange={(itemValue) => {
+            if (desplazamiento && desplazamiento.setFieldValue) {
+              if (desplazamiento.values[`municipio_${tipo}`] !== undefined) {
+                desplazamiento.setFieldValue(`municipio_${tipo}`, itemValue);
+              } else if (desplazamiento.values[`munipio_${tipo}`] !== undefined) {
+                desplazamiento.setFieldValue(`munipio_${tipo}`, itemValue);
+              }
             }
-          }
-        }}
-      >
-        {municipios.map((municipio) => (
-          <Picker.Item key={municipio.id_municipio} label={municipio.nombre_municipio.toString()} value={municipio.id_municipio} />
-        ))}
-      </Picker>
+          }}
+        >
+          {municipios.map((municipio) => (
+            <Picker.Item key={municipio.id_municipio} label={municipio.nombre_municipio.toString()} value={municipio.id_municipio} />
+          ))}
+        </Picker>
+
+      </View>
 
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+
   departamentomunicipio: {
     paddingTop: 5,
     paddingBottom: 0,
   },
+
   texto: {
     color: '#00447C',
     marginBottom: 5,
     fontWeight: '500',
+    paddingLeft: 2,
     fontSize: 16,
   },
+
   picker: {
     height: 48,
     fontSize: 17,
@@ -153,9 +168,22 @@ const styles = StyleSheet.create({
     borderColor: '#CED4DA',
     borderWidth: 1,
     marginBottom: 10,
-    borderRadius: 7,
-    paddingLeft: 15,
+    marginLeft: 0,
+    paddingLeft: 0,
   },
+
+  viewPicker: {
+    height: 55,
+    fontSize: 17,
+    color: '#5A87C6',
+    fontWeight: '400',
+    borderColor: '#CED4DA',
+    borderWidth: 1,
+    marginBottom: 10,
+    borderRadius: 7,
+    paddingLeft: 0,
+  },
+
 });
 
 export default DepartamentoMunicipio;

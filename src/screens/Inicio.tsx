@@ -20,7 +20,7 @@ const IniciarSesion = () => {
   const navigation = useNavigation();
 
 
-// useEffect para salir de la aplicacion si se aprieta el boton atras del dispositivo movil
+  // useEffect para salir de la aplicacion si se aprieta el boton atras del dispositivo movil
   useEffect(() => {
     const backAction = () => {
       BackHandler.exitApp();

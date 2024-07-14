@@ -29,15 +29,15 @@ const ContainerWithoutScroll = ({ children, floatingButton }: ContainerProps) =>
 };
 
 const styles = StyleSheet.create({
+
   container: {
     flex: 1,
     backgroundColor: '#FFF',
-    borderBottomWidth: 1,
-    borderBottomColor: '#E6E5E3',
     paddingLeft: 10,
     paddingRight: 10,
     paddingTop: 10,
   },
+  
 });
 
 export { Container, ContainerWithoutScroll };

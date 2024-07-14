@@ -26,45 +26,50 @@ const InfoContainer = () => {
     return (
         <View style={styles.ContainerInfo}>
             <Text style={styles.TextoInfo}>
-                Los datos para el cierre de esta novedad deben ser diligenciados una vez finalice.
-                Usted podrá hacerlo accediendo al registro correspondiente desde la vista de «Novedades». 
+                Los datos para el cierre de este reporte deben ser diligenciados una vez este finalice.
+                Usted podrá hacerlo accediendo al registro correspondiente desde la vista de los reportes individuales. 
             </Text>
         </View>
 )
 }
   
-
 const styles = StyleSheet.create({
+    
     TituloContainer: {
-    flex: 1,
-    paddingTop: 0,
-    paddingBottom: 20,
-    flexDirection: 'row',
-    backgroundColor: 'transparent',
-  },
-  TextoTitulo: {
-    fontSize: 19,
-    paddingTop: 1,
-    paddingLeft: 5,
-    fontWeight: '900',
-    color: 'black',
-  },
-  ContainerInfo: {
-    color: '#5A87C6',
-    fontWeight: '400',
-    borderColor: '#CED4DA',
-    borderWidth: 1,
-    marginBottom: 10,
-    borderRadius: 7,
-    padding: 15,
-  },
-  TextoInfo: {
-    fontSize: 16,
-    textAlign: 'center',
-    color: 'gray',
-    lineHeight: 24,
-    fontWeight: '500'
-  },
+        flex: 1,
+        paddingTop: 10,
+        paddingBottom: 10,
+        flexDirection: 'row',
+        backgroundColor: 'transparent',
+    },
+
+    TextoTitulo: {
+        fontSize: 19,
+        paddingTop: 1,
+        paddingLeft: 5,
+        fontWeight: '700',
+        color: 'black',
+    },
+
+    ContainerInfo: {
+        color: '#5A87C6',
+        fontWeight: '400',
+        borderColor: '#CED4DA',
+        borderWidth: 1,
+        marginTop: 10,
+        marginBottom: 15,
+        borderRadius: 7,
+        padding: 15,
+    },
+
+    TextoInfo: {
+        fontSize: 16,
+        textAlign: 'center',
+        color: 'gray',
+        lineHeight: 24,
+        fontWeight: '500'
+    },
+
 });
 
 export { TituloContainer, InfoContainer }

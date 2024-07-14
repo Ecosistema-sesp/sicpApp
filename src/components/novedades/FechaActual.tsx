@@ -68,11 +68,12 @@ const styles = StyleSheet.create({
   texto: {
     color: '#00447C',
     marginBottom: 5,
+    paddingLeft: 2,
     fontWeight: '500',
     fontSize: 16,
   },
   input: {
-    height: 48,
+    height: 55,
     fontSize: 17,
     color: '#5A87C6',
     fontWeight: '400',

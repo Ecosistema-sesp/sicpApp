@@ -106,6 +106,7 @@ const renderIcon = (tipo_reporte:number,id:number ) => {
     {data.map(item => { 
       
       return (
+
         <TouchableOpacity key={item.id_reporte}
           onPress={() => {  
             switch(item.tipo_reporte) {
@@ -132,6 +133,7 @@ const renderIcon = (tipo_reporte:number,id:number ) => {
             }
           }}
         >
+          
           <View key={item.id_reporte} style={{ 
             position: 'relative',
             flexDirection: 'row',

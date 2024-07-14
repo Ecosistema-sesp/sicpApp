@@ -45,6 +45,7 @@ function PanelNovedadesStackScreen() {
       <PanelNovedadesStack.Screen 
         name="NovedadesScreen" 
         component={PanelNovedades} 
+
         options={{ 
           headerLeft: () => null,
           headerRight: () => null,
@@ -54,9 +55,10 @@ function PanelNovedadesStackScreen() {
             borderBottomColor: '#E6E5E3',
             height: 80
           },
+
           headerTitle: () => (
             <View>
-              <Text style={styles.titulo}>Reportes</Text>
+              <Text style={styles.titulo}>Reportes individuales</Text>
             </View>
           ),
           headerTitleAlign: 'center',
@@ -67,6 +69,7 @@ function PanelNovedadesStackScreen() {
 }
 
 const styles = StyleSheet.create({
+
   container: {
     flex: 1,
     justifyContent: 'flex-start',
@@ -76,6 +79,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#E6E5E3',
   },
+
   row: {
     flexDirection: 'row',
     justifyContent: 'center',
@@ -84,15 +88,18 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     padding:20,
   },
+
   icon: {
     marginRight: 10,
   },
+
   titulo: {
+    paddingTop: 10,
     fontSize: 22,
     fontWeight: '700',
     color: '#245C97'
   }
-});
 
+});
 
 export default PanelNovedadesStackScreen;

@@ -57,9 +57,6 @@ async function  fetchAndHandleUrl() {
 
   return (
     <View style={styles.contenedor}>
-      <Text style={styles.texto}>
-        Nombre:
-      </Text>
       <TextInput
         style={styles.input}
         placeholder='Nombre(s) y apellido(s)'
@@ -72,19 +69,15 @@ async function  fetchAndHandleUrl() {
     </View>
   );
 }
+
 const styles = StyleSheet.create({
+  
   contenedor: {
-    paddingTop: 0,
-    paddingBottom: 0,
+    paddingBottom: 10,
   },
-  texto: {
-    color: '#00447C',
-    marginBottom: 5,
-    fontWeight: '500',
-    fontSize: 16,
-  },
+
   input: {
-    height: 48,
+    height: 55,
     fontSize: 17,
     color: '#5A87C6',
     fontWeight: '400',

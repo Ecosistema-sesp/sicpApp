@@ -52,16 +52,20 @@ export const Panel = () => {
     return (
         
         <Tab.Navigator
+
             barStyle={{
                 backgroundColor: '#FFF',
+                borderTopWidth: 1,
+                borderTopColor: '#E6E5E3',
             }}
+
             screenOptions={({ route }) => ({
                 tabBarIcon: ({ focused, color }) => {
                     let iconName;
 
-                    if (route.name === 'Reportes') {
+                    if (route.name === 'Individuales') {
                         iconName = focused ? 'chatbubble-ellipses' : 'chatbubble-ellipses-outline';
-                    } else if (route.name === 'Esquema') {
+                    } else if (route.name === 'Colectivos') {
                         iconName = focused ? 'car' : 'car-outline';
                     } else if (route.name === 'Directorio') {
                         iconName = focused ? 'call' : 'call-outline';
@@ -75,10 +79,11 @@ export const Panel = () => {
                 tabBarInactiveTintColor: 'gray',
             })}
         >
-            <Tab.Screen name='Reportes' component={NovedadesStackScreen} />
-            <Tab.Screen name='Esquema' component={EsquemaStackScreen} />
+            <Tab.Screen name='Individuales' component={NovedadesStackScreen} />
+            <Tab.Screen name='Colectivos' component={EsquemaStackScreen} />
             <Tab.Screen name='Directorio' component={DirectorioStackScreen} />
             <Tab.Screen name='Rutas' component={RutasStackScreen} />
+
         </Tab.Navigator>
 
     );

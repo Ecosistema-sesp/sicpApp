@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { FormikValues, useFormik} from 'formik';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { createStackNavigator } from "@react-navigation/stack";
 import { useNavigation, RouteProp, useRoute, NavigationProp } from "@react-navigation/native";
+import Icon from 'react-native-vector-icons/Ionicons';
 import axios from 'axios';
-
 
 import { Container } from '../../inicio/Contenedor';
 import { InfoContainer, TituloContainer } from '../TitulosContainer';
@@ -32,7 +32,6 @@ const DhdesplazamientoForm = () => {
   const [userRol, setUserRolId] = useState(2)
   const [fechaInicio, setFechaInicio] = useState('');
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
-
   
   const desplazamiento = useFormik({
     
@@ -93,63 +92,133 @@ const DhdesplazamientoForm = () => {
         });
     }
   }, [id]);
+
   return(
+
     <Container>
    
-    {desdePanelNovedades ? (
-      <>
-        <FinDesplazamiento Id={id} desplazamiento={desplazamiento} />
-      </>
-    ) : (
-      <>
-        <TituloContainer
-          iconName="person-circle-sharp"
-          titulo="Persona que registra"
-        />
-        
-        <NombreApellido setUserId={setUserId} desplazamiento={desplazamiento} />
+      {desdePanelNovedades ? (
+        <>
+          <FinDesplazamiento Id={id} desplazamiento={desplazamiento} />
+        </>
+      ) : (
+        <>
+          <TituloContainer
+            iconName="person-circle-sharp"
+            titulo="Persona de protección"
+          />
+          
+          <NombreApellido setUserId={setUserId} desplazamiento={desplazamiento} />
 
-        <TituloContainer
-          iconName="chevron-forward-circle"
-          titulo="Datos y ubicación de inicio"
-        />
+          <TituloContainer
+            iconName="chevron-forward-circle"
+            titulo="Datos y ubicación de inicio"
+          />
 
-        <FechaHora variables={{fecha : fechaInicio}} desplazamiento={desplazamiento} tipo='fecha_inicio'/>
-        <Ubicacion desplazamiento={desplazamiento} tipo='inicio' />
-        <DepartamentoMunicipio desplazamiento={desplazamiento} tipo='inicio' />
-        <InfoContainer />
-        
-        <BotonSubmit handleSubmit={() => desplazamiento.handleSubmit()} buttonText="Iniciar dezplazamiento" />
-      </>
-    )}
-  </Container>
+          <FechaHora variables={{fecha : fechaInicio}} desplazamiento={desplazamiento} tipo='fecha_inicio'/>
+          <Ubicacion desplazamiento={desplazamiento} tipo='inicio' />
+          <DepartamentoMunicipio desplazamiento={desplazamiento} tipo='inicio' />
+
+          <InfoContainer />
+          
+          <BotonSubmit handleSubmit={() => desplazamiento.handleSubmit()} buttonText="Registrar" />
+
+        </>
+      )}
+
+    </Container>
+
   )}
 
 
 const DesplazamientoStack = createStackNavigator();
+
 export default function DesplazamientoStackScreen() {
+
   const route = useRoute<RouteProp<localStackNavigatorParams, 'NovedadDesplazamiento'>>();
   const desdePanelNovedades = route.params?.desdePanelNovedades;
   const id = route.params?.id;
+  const navigationBack = useNavigation();
+  const navigationHome = useNavigation();
+
+  const BotonFlotanteTocado = () => {
+      navigationHome.navigate("Panel");
+  }  
+
   return (
-  <DesplazamientoStack.Navigator>
-    <DesplazamientoStack.Screen 
-      name="DhdesplazamientoForm" 
-      component={DhdesplazamientoForm} 
-      initialParams={{ desdePanelNovedades: desdePanelNovedades, id: id }}
-      options={{ 
-        headerStyle: {
-          backgroundColor: '#F4F2F3',
-          borderBottomWidth: 1,
-          borderBottomColor: '#F3EDF6', 
-        },
-        headerTitle: () => (
-          <View style={{ width: 250}}>
-              <Text>Registro de desplazamiento</Text>
-          </View>
-        ),
-      }}
-    />
-  </DesplazamientoStack.Navigator>
+
+    <DesplazamientoStack.Navigator>
+
+      <DesplazamientoStack.Screen
+       
+        name="DhdesplazamientoForm" 
+        component={DhdesplazamientoForm} 
+        initialParams={{ desdePanelNovedades: desdePanelNovedades, id: id }}
+
+        options={{ 
+
+          headerTitleAlign: 'center',
+
+          headerStyle: {
+            backgroundColor: '#FFF',
+            borderBottomWidth: 1,
+            borderBottomColor: '#F3EDF6',
+            height: 80,
+          },
+
+          headerTitle: () => (
+            <View>
+                <Text style={styles.textoHeader}>Inicio del desplazamiento</Text>
+            </View>
+          ),
+
+          headerLeft: () => (
+
+            <TouchableOpacity
+              onPress={() => navigationBack.goBack()}
+              style={{ marginLeft: 10, paddingTop: 10 }}
+            >
+              <Icon
+                name="arrow-back-outline"
+                size={28}
+                color="#00447C"
+                style={{ fontWeight: 'bold' }}
+              />
+            </TouchableOpacity>
+          ),
+
+          headerRight: () => (
+            
+            <TouchableOpacity
+              onPress={BotonFlotanteTocado}
+              style={{ marginRight: 10, paddingTop: 10 }}
+            >
+              <Icon
+                name="home"
+                size={24}
+                color="#00447C"
+                style={{ fontWeight: 'bold' }}
+              />
+            </TouchableOpacity>
+          ),
+          
+        }}
+
+      />
+
+    </DesplazamientoStack.Navigator>
+
   );
+
 }
+
+const styles = StyleSheet.create({
+
+  textoHeader: {
+    color: '#00447C',
+    fontWeight: '800',
+    fontSize: 19,
+    paddingTop: 10,
+  },
+  
+});
