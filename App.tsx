@@ -28,6 +28,12 @@ import DisponibilidadStackScreen from "./src/components/novedades/disponibilidad
 import ResumenDisponibilidadStackScreen from "./src/components/novedades/disponibilidad/ResumenDisponibilidad";
 import FinalizacionStackScreen from "./src/components/novedades/finalizacionAnticipada/FinalizacionAnticipada";
 import ResumenFinalizacionStackScreen from "./src/components/novedades/finalizacionAnticipada/ResumenFinalizacionAnticipada";
+import InasistenciaStackScreen from "./src/components/novedades/inasistencia/Inasistencia";
+import ResumenInasistenciaStackScreen from "./src/components/novedades/inasistencia/ResumenInasistencia";
+import ViaticosStackScreen from "./src/components/novedades/viaticos/Viaticos";
+import ResumenViaticosStackScreen from "./src/components/novedades/viaticos/ResumenViaticos";
+import OtroStackScreen from "./src/components/novedades/otroReporteIndividual/Otro";
+import ResumenOtroStackScreen from "./src/components/novedades/otroReporteIndividual/ResumenOtro";
 
 const Stack = createNativeStackNavigator();
 
@@ -61,6 +67,12 @@ function App() {
             <Stack.Screen name="ResumenDisponibilidad" component={ResumenDisponibilidadStackScreen} options={{headerShown:false}} />
             <Stack.Screen name="novedadFinalizacion" component={FinalizacionStackScreen} options={{headerShown:false}} />
             <Stack.Screen name="ResumenFinalizacion" component={ResumenFinalizacionStackScreen} options={{headerShown:false}} />
+            <Stack.Screen name="NovedadInasistencia" component={InasistenciaStackScreen} options={{headerShown:false}} />
+            <Stack.Screen name="ResumenInasistencia" component={ResumenInasistenciaStackScreen} options={{headerShown:false}} />
+            <Stack.Screen name="NovedadViaticos" component={ViaticosStackScreen} options={{headerShown:false}} />
+            <Stack.Screen name="ResumenViaticos" component={ResumenViaticosStackScreen} options={{headerShown:false}} />
+            <Stack.Screen name="NovedadOtro" component={OtroStackScreen} options={{headerShown:false}} />
+            <Stack.Screen name="ResumenOtro" component={ResumenOtroStackScreen} options={{headerShown:false}} />
 
           </Stack.Navigator>
         </NavigationContainer>

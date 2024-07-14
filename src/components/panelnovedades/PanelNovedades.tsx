@@ -14,13 +14,17 @@ import BotonSalud from "./BotonSalud";
 import BotonDotacion from "./BotonDotacion";
 import BotonDisponibilidad from "./BotonDisponibilidad";
 import BotonFinalizacion from "./BotonFinalizacionAnticipada";
+import BotonInasistencia from "./BotonInasistencia";
+import BotonViaticos from "./BotonViaticos";
+import BotonOtro from "./BotonOtroReporteIndividual";
+import { ScrollView } from "react-native-gesture-handler";
 
 
 const PanelNovedadesStack = createStackNavigator();
 
 const PanelNovedades = () => {
     return (
-
+      <ScrollView>
         <View style={styles.container}>
             <View style={styles.row}>
                 <BotonDesplazamiento />
@@ -34,8 +38,16 @@ const PanelNovedades = () => {
                 <BotonDisponibilidad />
                 <BotonFinalizacion />
             </View>
+            <View style={styles.row}>
+              <BotonInasistencia />
+              <BotonViaticos />
+            </View>
+            <View style={styles.row}>
+            <BotonOtro />
+            </View>
             <BotonFlotante />
         </View>
+      </ScrollView>
     )
 }
 

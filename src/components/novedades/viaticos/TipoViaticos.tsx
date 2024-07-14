@@ -2,37 +2,37 @@ import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 
-interface NovedadCategoriaDotacionProps {
-  Dotacion: any; 
+interface NovedadCategoriaViaticosProps {
+  Viaticos: any; 
 }
 
 interface Novedad {
-  id_tdotacion: number;  
-  nombre_tdotacion: String;
+  id_tviaticos: number;  
+  nombre_tviaticos: String;
 }
 
-const NovedadCategoriaDotacion = ({ Dotacion }: NovedadCategoriaDotacionProps) => {
-    const [novedadDotacion, setNovedadDotacion] = useState<Novedad[]>([]);
+const NovedadCategoriaViaticos = ({ Viaticos }: NovedadCategoriaViaticosProps) => {
+    const [novedadViaticos, setNovedadViaticos] = useState<Novedad[]>([]);
 
   useEffect(() => {
-    fetchNovedadDotacion();
+    fetchNovedadViaticos();
   }, []);
 
-  const fetchNovedadDotacion = async () => {
+  const fetchNovedadViaticos = async () => {
     try {
-      const response = await fetch('http://ecosistemasesp.unp.gov.co/sicp/api/novedaddotacion/');
+      const response = await fetch('http://ecosistemasesp.unp.gov.co/sicp/api/novedadviaticos/');
       const data = await response.json();
-      setNovedadDotacion([{ id_tdotacion: 0, nombre_tdotacion: 'Seleccione' }, ...data]);
+      setNovedadViaticos([{ id_tviaticos: 0, nombre_tviaticos: 'Seleccione' }, ...data]);
     } catch (error) {
       console.error(error);
     }
   };
 
   useEffect(() => {
-    if (novedadDotacion.length > 0 && !Dotacion.values[`tipo_dotacion`]) {
-      Dotacion.setFieldValue(`tipo_dotacion`, novedadDotacion[0].id_tdotacion);
+    if (novedadViaticos.length > 0 && !Viaticos.values[`tipo_nviaticos`]) {
+      Viaticos.setFieldValue(`tipo_nviaticos`, novedadViaticos[0].id_tviaticos);
     }
-  }, [novedadDotacion]);
+  }, [novedadViaticos]);
   
 
   return (
@@ -42,13 +42,13 @@ const NovedadCategoriaDotacion = ({ Dotacion }: NovedadCategoriaDotacionProps) =
       </Text>
       <Picker
         style={{...styles.picker, borderWidth: 1, borderColor: 'black', }}
-        selectedValue={Dotacion.values[`tipo_dotacion`]}
+        selectedValue={Viaticos.values[`tipo_nviaticos`]}
         onValueChange={(itemValue) => {
-          Dotacion.setFieldValue(`tipo_dotacion`, itemValue);
+          Viaticos.setFieldValue(`tipo_nviaticos`, itemValue);
         }}
       >
-      {novedadDotacion.map((novedad) => (
-        <Picker.Item key={novedad.id_tdotacion} label={novedad.nombre_tdotacion.toString()} value={novedad.id_tdotacion} />
+      {novedadViaticos.map((novedad) => (
+        <Picker.Item key={novedad.id_tviaticos} label={novedad.nombre_tviaticos.toString()} value={novedad.id_tviaticos} />
       ))}
       </Picker>
     </View>
@@ -80,4 +80,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default NovedadCategoriaDotacion;
+export default NovedadCategoriaViaticos;
